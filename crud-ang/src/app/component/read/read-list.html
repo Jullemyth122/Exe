@@ -1,0 +1,282 @@
+<div class="read-list-container">
+  <!-- Interactive Search and Filter Header -->
+  <div class="filter-panel">
+    <div class="filter-header">
+      <div class="search-box">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="search-icon"
+        >
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input
+          type="text"
+          [value]="searchQuery()"
+          (input)="updateSearch($event)"
+          placeholder="Search dogs by name or breed..."
+        />
+        @if (searchQuery()) {
+          <button class="clear-search" (click)="searchQuery.set('')" title="Clear search">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Category Pills -->
+    <div class="breed-filters">
+      @for (breed of breeds(); track breed) {
+        <button
+          class="breed-pill"
+          [class.active]="selectedBreed() === breed"
+          (click)="selectBreed(breed)"
+        >
+          {{ breed }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Cards Grid -->
+  @if (filteredItems().length > 0) {
+    <div class="dog-grid">
+      @for (dog of filteredItems(); track dog.id) {
+        <div class="dog-card">
+          <!-- Image container with badges -->
+          <div class="dog-image-wrapper">
+            <img
+              [src]="
+                dog.img ||
+                'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=600'
+              "
+              [alt]="dog.name"
+              class="dog-img"
+            />
+            <div class="dog-image-overlay"></div>
+
+            <!-- Age Badge -->
+            <span class="age-badge" [class]="getAgeCategory(dog.age).toLowerCase()">
+              {{ getAgeCategory(dog.age) }} ({{ dog.age }} {{ dog.age === 1 ? 'yr' : 'yrs' }})
+            </span>
+
+            <!-- Quick action buttons overlaid on image -->
+            <div class="card-actions-overlay">
+              <button
+                class="card-action-btn edit-btn"
+                title="Edit dog"
+                (click)="navigateToEdit(dog.id)"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+              </button>
+              <button
+                class="card-action-btn delete-btn"
+                title="Delete dog"
+                (click)="openDeleteModal(dog.id, dog.name)"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path
+                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Dog Info Details -->
+          <div class="dog-info">
+            <div class="dog-header">
+              <h3 class="dog-name">{{ dog.name }}</h3>
+              <span class="dog-id">#{{ dog.id.toString().padStart(3, '0') }}</span>
+            </div>
+
+            <div class="dog-meta">
+              <div class="meta-item">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="meta-icon"
+                >
+                  <path
+                    d="M12 5c.67 0 1.35.09 2 .26 1.78-2 3.82-2.67 5-.26a4 4 0 0 1 .5 3c-.15.93-.6 1.83-1.5 2.5a5.1 5.1 0 0 1 .5 2.5c-.15 2.08-1.54 3.73-3.5 4-1.2.16-2.5.16-3.7 0-1.96-.27-3.35-1.92-3.5-4a5.1 5.1 0 0 1 .5-2.5C2.1 10.59 1.65 9.69 1.5 8.76a4 4 0 0 1 .5-3c1.18-2.41 3.22-1.74 5-.26.65-.17 1.33-.26 2-.26Z"
+                  ></path>
+                </svg>
+                <span class="meta-text">{{ dog.breed || 'Mixed Breed' }}</span>
+              </div>
+            </div>
+
+            <div class="dog-footer">
+              <span class="status-indicator">
+                <span class="status-dot"></span>
+                Available
+              </span>
+              <div class="footer-actions">
+                <button
+                  class="action-btn-secondary edit-action"
+                  title="Edit"
+                  (click)="navigateToEdit(dog.id)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="13"
+                    height="13"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                  </svg>
+                  <span>Edit</span>
+                </button>
+                <button
+                  class="action-btn-secondary delete-action"
+                  title="Delete"
+                  (click)="openDeleteModal(dog.id, dog.name)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="13"
+                    height="13"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path
+                      d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+                    ></path>
+                  </svg>
+                  <span>Delete</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <!-- Empty State -->
+    <div class="empty-state">
+      <div class="empty-icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="48"
+          height="48"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M16 16s-1.5-2-4-2-4 2-4 2M9 9h.01M15 9h.01"></path>
+        </svg>
+      </div>
+      <h3>No matches found</h3>
+      <p>
+        We couldn't find any dogs matching your criteria. Try adjusting your search query or breed
+        filters.
+      </p>
+      <button class="reset-filter-btn" (click)="searchQuery.set(''); selectedBreed.set('All')">
+        Clear All Filters
+      </button>
+    </div>
+  }
+</div>
+
+<!-- Delete Confirmation Modal -->
+@if (pendingDeleteId() !== null) {
+  <div class="modal-backdrop" (click)="cancelDelete()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <div class="modal-icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="28"
+          height="28"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="3 6 5 6 21 6"></polyline>
+          <path
+            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+          ></path>
+          <line x1="10" y1="11" x2="10" y2="17"></line>
+          <line x1="14" y1="11" x2="14" y2="17"></line>
+        </svg>
+      </div>
+      <h3>Remove Dog?</h3>
+      <p>
+        Are you sure you want to remove <strong>{{ pendingDeleteName() }}</strong> from the catalog?
+        This action cannot be undone.
+      </p>
+      <div class="modal-actions">
+        <button class="modal-btn-cancel" (click)="cancelDelete()">Keep Dog</button>
+        <button class="modal-btn-confirm" (click)="confirmDelete()">Yes, Remove</button>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,91 @@
+<div class="create-container">
+  <div class="create-card">
+    <div class="create-header">
+      <h2>Register New Puppy</h2>
+      <p>Add a new furry friend to the directory catalog</p>
+    </div>
+
+    <form (submit)="onSubmit($event)" class="create-form">
+      <!-- Name Input -->
+      <div class="form-group">
+        <label for="name">Puppy Name</label>
+        <div class="input-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="input-icon">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            required 
+            placeholder="e.g. Max"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <!-- Breed Input -->
+      <div class="form-group">
+        <label for="breed">Breed</label>
+        <div class="input-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="input-icon">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+          <input 
+            type="text" 
+            id="breed" 
+            name="breed" 
+            required 
+            placeholder="e.g. Golden Retriever"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <!-- Age Input -->
+      <div class="form-group">
+        <label for="age">Age (Years)</label>
+        <div class="input-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="input-icon">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <input 
+            type="number" 
+            id="age" 
+            name="age" 
+            min="0" 
+            max="30"
+            required 
+            placeholder="e.g. 2"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <!-- Generated UID Indicator -->
+      <div class="uid-indicator">
+        <div class="uid-label">
+          <span>Generated Device UID</span>
+          <span class="uid-tag">Lifecycle Signal</span>
+        </div>
+        <div class="uid-value">{{ generatedUid() }}</div>
+      </div>
+
+      <!-- Actions -->
+      <div class="form-actions">
+        <a routerLink="/items" class="btn-cancel">
+          Cancel
+        </a>
+        <button type="submit" class="btn-submit">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>Register Dog</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

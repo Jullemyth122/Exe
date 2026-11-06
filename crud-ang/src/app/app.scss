@@ -1,0 +1,236 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle blue glow accents */
+.glow-bg {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(130px);
+  z-index: -1;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.glow-primary {
+  width: 450px;
+  height: 450px;
+  background: var(--primary);
+  top: -120px;
+  right: -80px;
+}
+
+.glow-secondary {
+  width: 380px;
+  height: 380px;
+  background: var(--accent);
+  bottom: -160px;
+  left: -100px;
+}
+
+/* ── Header ── */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--header-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Brand / Logo */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  transition: opacity 0.2s;
+
+  &:hover { opacity: 0.88; }
+}
+
+.logo-orb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: #fff;
+  box-shadow: 0 0 22px rgba(37, 99, 235, 0.35);
+  flex-shrink: 0;
+  transition: box-shadow 0.3s ease;
+
+  &:hover { box-shadow: 0 0 30px rgba(37, 99, 235, 0.5); }
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  line-height: 1.1;
+
+  span {
+    background: linear-gradient(90deg, var(--primary-light), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.logo-tagline {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  margin-top: 1px;
+}
+
+/* Header right side */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1.1rem;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: var(--transition-smooth);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--text-primary);
+    background: rgba(37, 99, 235, 0.06);
+    border-color: var(--border-color-hover);
+    transform: translateY(-1px);
+  }
+
+  &.active {
+    background: rgba(37, 99, 235, 0.1);
+    border-color: rgba(37, 99, 235, 0.3);
+    color: var(--primary-light);
+  }
+
+  &.add-btn {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 3px 12px rgba(37, 99, 235, 0.25);
+
+    &:hover {
+      background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary) 100%);
+      box-shadow: 0 5px 18px rgba(37, 99, 235, 0.38);
+      color: #fff;
+    }
+
+    &.active {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+  }
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+
+  &:hover {
+    background: rgba(37, 99, 235, 0.08);
+    border-color: var(--border-color-hover);
+    color: var(--primary-light);
+    transform: translateY(-1px);
+  }
+}
+
+/* ── Main ── */
+.app-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+}
+
+/* ── Footer ── */
+.app-footer {
+  text-align: center;
+  padding: 1.25rem 2rem;
+  border-top: 1px solid var(--border-color);
+  background: var(--header-bg);
+  transition: background 0.3s ease;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+
+  p {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--primary-light);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .app-header { padding: 0.9rem 1.1rem; }
+  .app-main   { padding: 1.5rem 1rem; }
+  .logo-tagline { display: none; }
+
+  .nav-btn span { display: none; }
+  .nav-btn { padding: 0.5rem 0.75rem; }
+}

@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* ── Dark Mode (default) ── */
+:root {
+  /* Brand — blue palette */
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #3b82f6;
+  --primary-rgb: 37, 99, 235;
+  --accent: #60a5fa;
+  --accent-glow: rgba(96, 165, 250, 0.35);
+
+  /* Backgrounds */
+  --bg-base: #09090b;
+  --bg-subtle: rgba(255, 255, 255, 0.02);
+  --bg-card: rgba(15, 23, 42, 0.70);
+  --bg-card-hover: rgba(23, 37, 64, 0.85);
+
+  /* Borders */
+  --border-color: rgba(255, 255, 255, 0.07);
+  --border-color-hover: rgba(96, 165, 250, 0.25);
+
+  /* Text */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  /* Badges */
+  --bg-puppy: rgba(59, 130, 246, 0.15);
+  --text-puppy: #93c5fd;
+  --bg-young: rgba(16, 185, 129, 0.13);
+  --text-young: #6ee7b7;
+  --bg-adult: rgba(245, 158, 11, 0.13);
+  --text-adult: #fcd34d;
+
+  /* UI */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --transition-smooth: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  --glass-blur: blur(16px);
+  --shadow-sm: 0 2px 8px -2px rgba(0,0,0,0.55);
+  --shadow-md: 0 8px 32px 0 rgba(0,0,0,0.45);
+  --shadow-lg: 0 16px 48px 0 rgba(0,0,0,0.55);
+
+  /* Header */
+  --header-bg: rgba(9, 9, 11, 0.85);
+  --grid-color: rgba(255, 255, 255, 0.025);
+}
+
+/* ── Light Mode ── */
+[data-theme="light"] {
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #3b82f6;
+  --accent: #2563eb;
+  --accent-glow: rgba(37, 99, 235, 0.2);
+
+  --bg-base: #f0f4ff;
+  --bg-subtle: rgba(37, 99, 235, 0.04);
+  --bg-card: rgba(255, 255, 255, 0.90);
+  --bg-card-hover: rgba(255, 255, 255, 1);
+
+  --border-color: rgba(37, 99, 235, 0.12);
+  --border-color-hover: rgba(37, 99, 235, 0.3);
+
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+
+  --bg-puppy: rgba(59, 130, 246, 0.12);
+  --text-puppy: #1d4ed8;
+  --bg-young: rgba(16, 185, 129, 0.10);
+  --text-young: #047857;
+  --bg-adult: rgba(245, 158, 11, 0.10);
+  --text-adult: #b45309;
+
+  --header-bg: rgba(255, 255, 255, 0.92);
+  --grid-color: rgba(37, 99, 235, 0.04);
+  --shadow-sm: 0 2px 8px -2px rgba(0,0,0,0.08);
+  --shadow-md: 0 8px 32px 0 rgba(0,0,0,0.10);
+  --shadow-lg: 0 16px 48px 0 rgba(0,0,0,0.12);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-base);
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 44px 44px;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(96, 165, 250, 0.2);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(96, 165, 250, 0.35); }
+
+/* Base */
+a, button {
+  font-family: inherit;
+  color: inherit;
+  text-decoration: none;
+}

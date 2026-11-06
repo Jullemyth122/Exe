@@ -1,0 +1,167 @@
+<div class="app-container">
+  <!-- Subtle glow accents -->
+  <div class="glow-bg glow-primary"></div>
+  <div class="glow-bg glow-secondary"></div>
+
+  <!-- ── Header ── -->
+  <header class="app-header" role="banner">
+    <a routerLink="/items" class="brand" aria-label="PawShop Home">
+      <!-- Paw Print Logo -->
+      <div class="logo-orb" aria-hidden="true">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <!-- Paw: 4 toe beans + palm -->
+          <ellipse cx="5" cy="7" rx="1.7" ry="2.1" />
+          <ellipse cx="9" cy="5" rx="1.7" ry="2.1" />
+          <ellipse cx="13.5" cy="5" rx="1.7" ry="2.1" />
+          <ellipse cx="17.5" cy="7" rx="1.7" ry="2.1" />
+          <path
+            d="M12 9.5c-3.5 0-6.5 2-6.5 5.5 0 2.2 1.8 4 4 4h5c2.2 0 4-1.8 4-4 0-3.5-3-5.5-6.5-5.5z"
+          />
+        </svg>
+      </div>
+      <div class="brand-text">
+        <span class="logo-title">Paw<span>Shop</span></span>
+        <span class="logo-tagline">Dog Directory & Shop</span>
+      </div>
+    </a>
+
+    <div class="header-actions">
+      <nav class="nav-links" role="navigation" aria-label="Main Navigation">
+        <a
+          routerLink="/items"
+          routerLinkActive="active"
+          class="nav-btn"
+          aria-label="Browse dog catalog"
+        >
+          <!-- Grid icon -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="3" width="7" height="9"></rect>
+            <rect x="14" y="3" width="7" height="5"></rect>
+            <rect x="14" y="12" width="7" height="9"></rect>
+            <rect x="3" y="16" width="7" height="5"></rect>
+          </svg>
+          <span>Catalog</span>
+        </a>
+
+        <a
+          routerLink="/create"
+          routerLinkActive="active"
+          class="nav-btn add-btn"
+          aria-label="Add a new dog"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>Add Dog</span>
+        </a>
+      </nav>
+
+      <!-- Theme toggle -->
+      <button
+        class="theme-toggle"
+        (click)="toggleTheme()"
+        [attr.aria-label]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+        [title]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+      >
+        @if (isDark()) {
+          <!-- Sun icon -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        } @else {
+          <!-- Moon icon -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        }
+      </button>
+    </div>
+  </header>
+
+  <!-- Main workspace -->
+  <main class="app-main" role="main">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-logo" aria-hidden="true">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <ellipse cx="5" cy="7" rx="1.7" ry="2.1" />
+          <ellipse cx="9" cy="5" rx="1.7" ry="2.1" />
+          <ellipse cx="13.5" cy="5" rx="1.7" ry="2.1" />
+          <ellipse cx="17.5" cy="7" rx="1.7" ry="2.1" />
+          <path
+            d="M12 9.5c-3.5 0-6.5 2-6.5 5.5 0 2.2 1.8 4 4 4h5c2.2 0 4-1.8 4-4 0-3.5-3-5.5-6.5-5.5z"
+          />
+        </svg>
+        <span>PawShop</span>
+      </div>
+      <p>&copy; 2026 PawShop &mdash; Your friendly dog directory</p>
+    </div>
+  </footer>
+</div>

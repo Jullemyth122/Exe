@@ -1,0 +1,9 @@
+[submodule "Meus-main"]
+	path = Meus-main
+	url = https://github.com/Jullemyth122/meus-main.git
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/Jullemyth122/AngularCrud.git
+[submodule "meus-backend"]
+	path = meus-backend
+	url = https://github.com/Jullemyth122/meus-backend.git
