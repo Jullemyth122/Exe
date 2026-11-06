@@ -7,3 +7,6 @@
 [submodule "meus-backend"]
 	path = meus-backend
 	url = https://github.com/Jullemyth122/meus-backend.git
+[submodule "charap-app/Charap"]
+	path = charap-app/Charap
+	url = https://github.com/Jullemyth122/charap.git
